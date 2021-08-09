@@ -1,0 +1,47 @@
+{
+  "name": "nextjs-project-starter",
+  "version": "1.0.0",
+  "private": true,
+  "author": "Daniel Van Cuylenburg <email@danielvanc.com> (https://danielvanc.com/)",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "test": "jest --watch",
+    "test:ci": "jest --ci",
+    "test:coverage": "yarn test -- --watchAll=false",
+    "cy:run": "cypress run",
+    "cy:open": "cypress open"
+  },
+  "dependencies": {
+    "faker": "^5.5.3",
+    "msw": "^0.34.0",
+    "next": "11.0.1",
+    "react": "17.0.2",
+    "react-dom": "17.0.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.15.0",
+    "@babel/preset-env": "^7.15.0",
+    "@testing-library/cypress": "^8.0.0",
+    "@testing-library/jest-dom": "^5.14.1",
+    "@testing-library/react": "^12.0.0",
+    "@testing-library/react-hooks": "^7.0.1",
+    "@testing-library/user-event": "^13.2.1",
+    "@types/jest": "^26.0.24",
+    "@types/react": "17.0.16",
+    "babel-jest": "^27.0.6",
+    "cypress": "^8.2.0",
+    "cypress-hmr-restarter": "^2.0.2",
+    "eslint": "7.32.0",
+    "eslint-config-next": "11.0.1",
+    "eslint-plugin-cypress": "^2.11.3",
+    "identity-obj-proxy": "^3.0.0",
+    "jest": "^27.0.6",
+    "prettier": "^2.3.2",
+    "react-test-render": "^1.1.2",
+    "ts-jest": "^27.0.4",
+    "typescript": "4.3.5"
+  }
+}
