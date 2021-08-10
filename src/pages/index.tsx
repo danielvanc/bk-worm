@@ -10,7 +10,7 @@ export default function Home() {
       </Head>
 
       <main>
-        <h1>BK Worm</h1>
+        <h1 className="text-center text-lg">BK Worm</h1>
       </main>
     </div>
   )
