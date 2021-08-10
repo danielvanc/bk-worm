@@ -4,6 +4,7 @@
   "private": true,
   "author": "Daniel Van Cuylenburg <email@danielvanc.com> (https://danielvanc.com/)",
   "scripts": {
+    "postinstall": "keystone-next postinstall",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
@@ -16,6 +17,10 @@
   },
   "dependencies": {
     "@headlessui/react": "^1.4.0",
+    "@keystone-next/auth": "^30.0.0",
+    "@keystone-next/fields": "^13.0.0",
+    "@keystone-next/fields-document": "^7.0.3",
+    "@keystone-next/keystone": "^23.0.3",
     "autoprefixer": "^10.3.1",
     "axios": "^0.21.1",
     "faker": "^5.5.3",
