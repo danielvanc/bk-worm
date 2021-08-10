@@ -4,7 +4,6 @@
   "private": true,
   "author": "Daniel Van Cuylenburg <email@danielvanc.com> (https://danielvanc.com/)",
   "scripts": {
-    "postinstall": "keystone-next postinstall",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
@@ -21,6 +20,7 @@
     "@keystone-next/fields": "^13.0.0",
     "@keystone-next/fields-document": "^7.0.3",
     "@keystone-next/keystone": "^23.0.3",
+    "@prisma/client": "^2.29.0",
     "autoprefixer": "^10.3.1",
     "axios": "^0.21.1",
     "faker": "^5.5.3",
@@ -54,6 +54,7 @@
     "identity-obj-proxy": "^3.0.0",
     "jest": "^27.0.6",
     "prettier": "^2.3.2",
+    "prisma": "^2.29.0",
     "react-test-render": "^1.1.2",
     "ts-jest": "^27.0.4",
     "typescript": "4.3.5"
