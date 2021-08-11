@@ -37,7 +37,8 @@ export default withAuth(
   config({
     db: {
       adapter: 'prisma_postgresql',
-      url: process.env.DATABASE_URL || 'postgres://dan:walle@localhost:5432/keystone',
+      url: process.env.DATABASE_URL || '',
+      useMigrations: true,
     },
     ui: {
       isAccessAllowed: (context) => !!context.session?.data,

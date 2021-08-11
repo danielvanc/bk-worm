@@ -1,8 +1,9 @@
 import Head from 'next/head'
+import prisma from '../../lib/prisma';
 
 export default function Home() {
   return (
-    <div>
+    <div> 
       <Head>
         <title>BK Worm</title>
         <meta name="description" content="The book app for book lovers" />
@@ -14,4 +15,10 @@ export default function Home() {
       </main>
     </div>
   )
+}
+
+export async function getStaticProps() {
+  const Users = await prisma.user.findMany()
+
+  return { props: { Users } }
 }
