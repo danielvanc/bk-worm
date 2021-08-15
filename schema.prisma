@@ -8,15 +8,65 @@ generator client {
   output   = "node_modules/.prisma/client"
 }
 
+model Account {
+  id                 String    @id @default(cuid())
+  providerType       String?
+  providerId         String?   @unique
+  providerAccountId  String?   @unique
+  refreshToken       String?   @unique
+  accessToken        String?   @unique
+  accessTokenExpires DateTime?
+  createdAt          DateTime?
+  updatedAt          DateTime?
+  user               User?     @relation("Account_user", fields: [userId], references: [id])
+  userId             String?   @map("user")
+  from_User_accounts User[]    @relation("User_accounts")
+
+  @@index([userId])
+}
+
+model Session {
+  id                 String    @id @default(cuid())
+  expires            DateTime?
+  sessionToken       String?   @unique
+  accessToken        String?   @unique
+  createdAt          DateTime?
+  updatedAt          DateTime?
+  user               User?     @relation("Session_user", fields: [userId], references: [id])
+  userId             String?   @map("user")
+  from_User_sessions User[]    @relation("User_sessions")
+
+  @@index([userId])
+}
+
+model VerificationRequest {
+  id         String    @id @default(cuid())
+  identifier String?   @unique
+  token      String?   @unique
+  expires    DateTime?
+}
+
 model User {
-  id       String  @id @default(cuid())
-  name     String?
-  age      String?
-  title    String?
-  location String?
-  email    String? @unique
-  password String?
-  posts    Post[]  @relation("Post_author")
+  id                String    @id @default(cuid())
+  name              String?
+  age               String?
+  title             String?
+  location          String?
+  email             String?   @unique
+  image             String?
+  password          String?
+  posts             Post[]    @relation("Post_author")
+  accounts          Account?  @relation("User_accounts", fields: [accountsId], references: [id])
+  accountsId        String?   @map("accounts")
+  sessions          Session?  @relation("User_sessions", fields: [sessionsId], references: [id])
+  sessionsId        String?   @map("sessions")
+  createdAt         DateTime?
+  updatedAt         DateTime?
+  from_Account_user Account[] @relation("Account_user")
+  from_Session_user Session[] @relation("Session_user")
+
+  @@index([accountsId])
+  @@index([sessionsId])
 }
 
 model Post {
