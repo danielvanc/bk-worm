@@ -38,5 +38,4 @@ yarn-error.log*
 # vercel
 .vercel
 
-#Keystone
-studio
+studio/node_modules
