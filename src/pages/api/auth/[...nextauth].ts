@@ -1,22 +1,24 @@
-import NextAuth from "next-auth";
-import Providers from "next-auth/providers";
-import { session } from "next-auth/client";
+import NextAuth, { NextAuthOptions } from 'next-auth';
+import Providers from 'next-auth/providers';
+import { NextApiRequest, NextApiResponse } from 'next';
+import { SanityAdapter, SanityCredentials } from 'next-auth-sanity';
+import { client } from "../../../../lib/sanity"
 
-export default NextAuth({
+const options: NextAuthOptions = {
   providers: [
     Providers.GitHub({
       clientId: process.env.GITHUB_ID,
-      clientSecret: process.env.GITHUB_SECRET,
+      clientSecret: process.env.GITHUB_SECRET
     }),
-    Providers.Google({
-      clientId: process.env.GOOGLE_ID,
-      clientSecret: process.env.GOOGLE_SECRET,
-      authorizationUrl: 'https://accounts.google.com/o/oauth2/v2/auth?prompt=consent&access_type=offline&response_type=code'
-    })
+    SanityCredentials(client) // only if you use sign in with credentials
   ],
   session: {
     jwt: true
   },
-  database: process.env.DATABASE_URL,
-  debug: true,
-});
+  adapter: SanityAdapter(client)
+};
+
+
+export default function Auth (req: NextApiRequest, res: NextApiResponse) {
+  return NextAuth(req, res, options);
+}

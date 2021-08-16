@@ -1,5 +1,6 @@
 import React from 'react'
-import { signIn, useSession } from 'next-auth/client';
+import { signUp } from 'next-auth-sanity/';
+import { signIn } from 'next-auth/client';
 
 export default function Unauthenticated() {
   return (
