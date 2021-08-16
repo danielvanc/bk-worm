@@ -1,8 +1,5 @@
 import NextAuth from "next-auth";
 import Providers from "next-auth/providers";
-import { PrismaAdapter } from "@next-auth/prisma-adapter"
-
-import prisma from '../../../../lib/prisma'
 import { session } from "next-auth/client";
 
 export default NextAuth({
@@ -21,6 +18,5 @@ export default NextAuth({
     jwt: true
   },
   database: process.env.DATABASE_URL,
-  adapter: PrismaAdapter(prisma),
   debug: true,
 });

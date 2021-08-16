@@ -1,10 +1,10 @@
 {
   "root": true,
   "project": {
-    "name": "bk-worm"
+    "name": "BKworm"
   },
   "api": {
-    "projectId": "z9lyuv4j",
+    "projectId": "rb4drngb",
     "dataset": "bk-worm-production"
   },
   "plugins": [
