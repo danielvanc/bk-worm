@@ -21,7 +21,7 @@
     "@keystone-next/fields-document": "^7.0.3",
     "@keystone-next/keystone": "^23.0.3",
     "@next-auth/prisma-adapter": "^0.5.3",
-    "@prisma/client": "^2.29.0",
+    "@prisma/client": "^2.29.1",
     "autoprefixer": "^10.3.1",
     "axios": "^0.21.1",
     "faker": "^5.5.3",

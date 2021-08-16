@@ -2,7 +2,7 @@ type Account {
   id: ID!
   providerType: String
   providerId: String
-  providerAccountId: String
+  providerAccountId: Int
   refreshToken: String
   accessToken: String
   accessTokenExpires: String
@@ -58,24 +58,14 @@ input AccountWhereInput {
   providerId_not_ends_with_i: String
   providerId_in: [String]
   providerId_not_in: [String]
-  providerAccountId: String
-  providerAccountId_not: String
-  providerAccountId_contains: String
-  providerAccountId_not_contains: String
-  providerAccountId_starts_with: String
-  providerAccountId_not_starts_with: String
-  providerAccountId_ends_with: String
-  providerAccountId_not_ends_with: String
-  providerAccountId_i: String
-  providerAccountId_not_i: String
-  providerAccountId_contains_i: String
-  providerAccountId_not_contains_i: String
-  providerAccountId_starts_with_i: String
-  providerAccountId_not_starts_with_i: String
-  providerAccountId_ends_with_i: String
-  providerAccountId_not_ends_with_i: String
-  providerAccountId_in: [String]
-  providerAccountId_not_in: [String]
+  providerAccountId: Int
+  providerAccountId_not: Int
+  providerAccountId_lt: Int
+  providerAccountId_lte: Int
+  providerAccountId_gt: Int
+  providerAccountId_gte: Int
+  providerAccountId_in: [Int]
+  providerAccountId_not_in: [Int]
   refreshToken: String
   refreshToken_not: String
   refreshToken_contains: String
@@ -143,9 +133,7 @@ input AccountWhereInput {
 input AccountWhereUniqueInput {
   id: ID
   providerId: String
-  providerAccountId: String
-  refreshToken: String
-  accessToken: String
+  providerAccountId: Int
 }
 
 enum SortAccountsBy {
@@ -189,7 +177,7 @@ enum OrderDirection {
 input AccountUpdateInput {
   providerType: String
   providerId: String
-  providerAccountId: String
+  providerAccountId: Int
   refreshToken: String
   accessToken: String
   accessTokenExpires: String
@@ -213,7 +201,7 @@ input AccountsUpdateInput {
 input AccountCreateInput {
   providerType: String
   providerId: String
-  providerAccountId: String
+  providerAccountId: Int
   refreshToken: String
   accessToken: String
   accessTokenExpires: String
@@ -484,6 +472,7 @@ type User {
   title: String
   location: String
   email: String
+  emailVerified: String
   image: String
   password: PasswordState
   posts(
@@ -508,10 +497,50 @@ type User {
       reason: "This query will be removed in a future version. Please use postsCount instead."
     )
   postsCount(where: PostWhereInput! = {}): Int
-  accounts: Account
-  sessions: Session
-  createdAt: String
-  updatedAt: String
+  accounts(
+    where: AccountWhereInput! = {}
+    search: String
+    sortBy: [SortAccountsBy!]
+      @deprecated(reason: "sortBy has been deprecated in favour of orderBy")
+    orderBy: [AccountOrderByInput!]! = []
+    first: Int
+    skip: Int! = 0
+  ): [Account!]
+  _accountsMeta(
+    where: AccountWhereInput! = {}
+    search: String
+    sortBy: [SortAccountsBy!]
+      @deprecated(reason: "sortBy has been deprecated in favour of orderBy")
+    orderBy: [AccountOrderByInput!]! = []
+    first: Int
+    skip: Int! = 0
+  ): _QueryMeta
+    @deprecated(
+      reason: "This query will be removed in a future version. Please use accountsCount instead."
+    )
+  accountsCount(where: AccountWhereInput! = {}): Int
+  sessions(
+    where: SessionWhereInput! = {}
+    search: String
+    sortBy: [SortSessionsBy!]
+      @deprecated(reason: "sortBy has been deprecated in favour of orderBy")
+    orderBy: [SessionOrderByInput!]! = []
+    first: Int
+    skip: Int! = 0
+  ): [Session!]
+  _sessionsMeta(
+    where: SessionWhereInput! = {}
+    search: String
+    sortBy: [SortSessionsBy!]
+      @deprecated(reason: "sortBy has been deprecated in favour of orderBy")
+    orderBy: [SessionOrderByInput!]! = []
+    first: Int
+    skip: Int! = 0
+  ): _QueryMeta
+    @deprecated(
+      reason: "This query will be removed in a future version. Please use sessionsCount instead."
+    )
+  sessionsCount(where: SessionWhereInput! = {}): Int
 }
 
 type PasswordState {
@@ -623,6 +652,14 @@ input UserWhereInput {
   email_not_ends_with_i: String
   email_in: [String]
   email_not_in: [String]
+  emailVerified: String
+  emailVerified_not: String
+  emailVerified_lt: String
+  emailVerified_lte: String
+  emailVerified_gt: String
+  emailVerified_gte: String
+  emailVerified_in: [String]
+  emailVerified_not_in: [String]
   image: String
   image_not: String
   image_contains: String
@@ -645,26 +682,12 @@ input UserWhereInput {
   posts_every: PostWhereInput
   posts_some: PostWhereInput
   posts_none: PostWhereInput
-  accounts: AccountWhereInput
-  accounts_is_null: Boolean
-  sessions: SessionWhereInput
-  sessions_is_null: Boolean
-  createdAt: String
-  createdAt_not: String
-  createdAt_lt: String
-  createdAt_lte: String
-  createdAt_gt: String
-  createdAt_gte: String
-  createdAt_in: [String]
-  createdAt_not_in: [String]
-  updatedAt: String
-  updatedAt_not: String
-  updatedAt_lt: String
-  updatedAt_lte: String
-  updatedAt_gt: String
-  updatedAt_gte: String
-  updatedAt_in: [String]
-  updatedAt_not_in: [String]
+  accounts_every: AccountWhereInput
+  accounts_some: AccountWhereInput
+  accounts_none: AccountWhereInput
+  sessions_every: SessionWhereInput
+  sessions_some: SessionWhereInput
+  sessions_none: SessionWhereInput
 }
 
 input UserWhereUniqueInput {
@@ -685,12 +708,10 @@ enum SortUsersBy {
   location_DESC
   email_ASC
   email_DESC
+  emailVerified_ASC
+  emailVerified_DESC
   image_ASC
   image_DESC
-  createdAt_ASC
-  createdAt_DESC
-  updatedAt_ASC
-  updatedAt_DESC
 }
 
 input UserOrderByInput {
@@ -700,9 +721,8 @@ input UserOrderByInput {
   title: OrderDirection
   location: OrderDirection
   email: OrderDirection
+  emailVerified: OrderDirection
   image: OrderDirection
-  createdAt: OrderDirection
-  updatedAt: OrderDirection
 }
 
 input UserUpdateInput {
@@ -711,13 +731,12 @@ input UserUpdateInput {
   title: String
   location: String
   email: String
+  emailVerified: String
   image: String
   password: String
   posts: PostRelateToManyInput
-  accounts: AccountRelateToOneInput
-  sessions: SessionRelateToOneInput
-  createdAt: String
-  updatedAt: String
+  accounts: AccountRelateToManyInput
+  sessions: SessionRelateToManyInput
 }
 
 input PostRelateToManyInput {
@@ -727,17 +746,17 @@ input PostRelateToManyInput {
   disconnectAll: Boolean
 }
 
-input AccountRelateToOneInput {
-  create: AccountCreateInput
-  connect: AccountWhereUniqueInput
-  disconnect: AccountWhereUniqueInput
+input AccountRelateToManyInput {
+  create: [AccountCreateInput]
+  connect: [AccountWhereUniqueInput]
+  disconnect: [AccountWhereUniqueInput]
   disconnectAll: Boolean
 }
 
-input SessionRelateToOneInput {
-  create: SessionCreateInput
-  connect: SessionWhereUniqueInput
-  disconnect: SessionWhereUniqueInput
+input SessionRelateToManyInput {
+  create: [SessionCreateInput]
+  connect: [SessionWhereUniqueInput]
+  disconnect: [SessionWhereUniqueInput]
   disconnectAll: Boolean
 }
 
@@ -752,13 +771,12 @@ input UserCreateInput {
   title: String
   location: String
   email: String
+  emailVerified: String
   image: String
   password: String
   posts: PostRelateToManyInput
-  accounts: AccountRelateToOneInput
-  sessions: SessionRelateToOneInput
-  createdAt: String
-  updatedAt: String
+  accounts: AccountRelateToManyInput
+  sessions: SessionRelateToManyInput
 }
 
 input UsersCreateInput {

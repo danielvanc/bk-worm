@@ -3,6 +3,7 @@ import {
   text,
   relationship,
   password,
+  integer,
   timestamp,
   select,
 } from '@keystone-next/fields';
@@ -10,24 +11,36 @@ import { document } from '@keystone-next/fields-document';
 
 export const lists = createSchema({
   Account: list({
+    db: {
+      searchField: 'providerId',
+    },
     fields: {
       providerType: text({ isRequired: false }),
-      providerId: text({ isRequired: true, isUnique: true }),
-      providerAccountId: text({ isRequired: true, isUnique: true }),
-      refreshToken: text({ isRequired: false, isUnique: true }),
-      accessToken: text({ isRequired: false, isUnique: true }),
+      providerId: text({
+        isRequired: true,
+        isUnique: true,
+        defaultValue: '',
+      }),
+      providerAccountId: integer({
+        isRequired: true,
+        isUnique: true,
+        defaultValue: 0,
+      }),
+      refreshToken: text({ isRequired: false }),
+      accessToken: text({ isRequired: false }),
       accessTokenExpires: timestamp({ isRequired: false }),
-      createdAt: timestamp({ isRequired: false }),
+      createdAt: timestamp({ isRequired: true, defaultValue: '1970-01-01T00:00:00.000Z', isUnique: true }),
       updatedAt: timestamp({ isRequired: false }),
       user: relationship({ ref: 'User' }),
-    }
+    },
+    
   }),
   Session: list({
     fields: {
       expires: timestamp({ isRequired: false }),
       sessionToken: text({ isRequired: false, isUnique: true }),
       accessToken: text({ isRequired: false, isUnique: true }),
-      createdAt: timestamp({ isRequired: false }),
+      createdAt: timestamp({ isRequired: false, defaultValue: '1970-01-01T00:00:00.000Z', isUnique: true }),
       updatedAt: timestamp({ isRequired: false }),
       user: relationship({ ref: 'User' }),
     }
@@ -51,13 +64,14 @@ export const lists = createSchema({
       title: text({ isRequired: false }),
       location: text({ isRequired: false }),
       email: text({ isRequired: true, isUnique: true }),
+      emailVerified: timestamp({ isRequired: true }),
       image: text({ isRequired: false }),
       password: password({ isRequired: true }),
       posts: relationship({ ref: 'Post.author', many: true }),
-      accounts: relationship({ ref: 'Account'}),
-      sessions: relationship({ ref: 'Session'}),
-      createdAt: timestamp({ isRequired: false }),
-      updatedAt: timestamp({ isRequired: false }),
+      accounts: relationship({ ref: 'Account', many: true }),
+      sessions: relationship({ ref: 'Session', many: true }),
+      // createdAt: timestamp({ isRequired: false }),
+      // updatedAt: timestamp({ isRequired: false }),
     },
   }),
   Post: list({

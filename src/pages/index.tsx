@@ -18,8 +18,6 @@ const UnAuthenticatedApp = dynamic(
 
 export default function Home() {
   const [session, loading] = useSession()
-  console.log('session', session);
-  console.log('loading', loading);
   return (
     <div> 
       <Head>

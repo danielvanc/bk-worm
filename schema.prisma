@@ -12,15 +12,15 @@ model Account {
   id                 String    @id @default(cuid())
   providerType       String?
   providerId         String?   @unique
-  providerAccountId  String?   @unique
-  refreshToken       String?   @unique
-  accessToken        String?   @unique
+  providerAccountId  Int?      @unique
+  refreshToken       String?
+  accessToken        String?
   accessTokenExpires DateTime?
-  createdAt          DateTime?
+  createdAt          DateTime? @unique
   updatedAt          DateTime?
   user               User?     @relation("Account_user", fields: [userId], references: [id])
   userId             String?   @map("user")
-  from_User_accounts User[]    @relation("User_accounts")
+  from_User_accounts User[]    @relation("User_accounts_many")
 
   @@index([userId])
 }
@@ -30,11 +30,11 @@ model Session {
   expires            DateTime?
   sessionToken       String?   @unique
   accessToken        String?   @unique
-  createdAt          DateTime?
+  createdAt          DateTime? @unique
   updatedAt          DateTime?
   user               User?     @relation("Session_user", fields: [userId], references: [id])
   userId             String?   @map("user")
-  from_User_sessions User[]    @relation("User_sessions")
+  from_User_sessions User[]    @relation("User_sessions_many")
 
   @@index([userId])
 }
@@ -53,20 +53,14 @@ model User {
   title             String?
   location          String?
   email             String?   @unique
+  emailVerified     DateTime?
   image             String?
   password          String?
   posts             Post[]    @relation("Post_author")
-  accounts          Account?  @relation("User_accounts", fields: [accountsId], references: [id])
-  accountsId        String?   @map("accounts")
-  sessions          Session?  @relation("User_sessions", fields: [sessionsId], references: [id])
-  sessionsId        String?   @map("sessions")
-  createdAt         DateTime?
-  updatedAt         DateTime?
+  accounts          Account[] @relation("User_accounts_many")
+  sessions          Session[] @relation("User_sessions_many")
   from_Account_user Account[] @relation("Account_user")
   from_Session_user Session[] @relation("Session_user")
-
-  @@index([accountsId])
-  @@index([sessionsId])
 }
 
 model Post {
