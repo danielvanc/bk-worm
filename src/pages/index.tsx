@@ -1,7 +1,25 @@
 import Head from 'next/head'
+import React from 'react';
+import dynamic from 'next/dynamic'
+import { signIn, signOut, Provider, useSession } from 'next-auth/client';
 import prisma from '../../lib/prisma';
 
+const Loading = () => <p>Loading...</p>
+
+const AuthenticatedApp = dynamic(
+  () => import('../components/authenticated'),
+  { loading: Loading }
+);
+
+const UnAuthenticatedApp = dynamic(
+  () => import('../components/unauthenticated'),
+  { loading: Loading }
+);
+
 export default function Home() {
+  const [session, loading] = useSession()
+  console.log('session', session);
+  console.log('loading', loading);
   return (
     <div> 
       <Head>
@@ -10,9 +28,14 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main>
-        <h1 className="text-center text-lg">BK Worm</h1>
-      </main>
+      {!session && (
+        <UnAuthenticatedApp />
+      )}
+      
+      {session && (
+        <AuthenticatedApp />
+      )}
+      
     </div>
   )
 }

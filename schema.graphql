@@ -1,3 +1,482 @@
+type Account {
+  id: ID!
+  providerType: String
+  providerId: String
+  providerAccountId: String
+  refreshToken: String
+  accessToken: String
+  accessTokenExpires: String
+  createdAt: String
+  updatedAt: String
+  user: User
+}
+
+input AccountWhereInput {
+  AND: [AccountWhereInput!]
+  OR: [AccountWhereInput!]
+  id: ID
+  id_not: ID
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  providerType: String
+  providerType_not: String
+  providerType_contains: String
+  providerType_not_contains: String
+  providerType_starts_with: String
+  providerType_not_starts_with: String
+  providerType_ends_with: String
+  providerType_not_ends_with: String
+  providerType_i: String
+  providerType_not_i: String
+  providerType_contains_i: String
+  providerType_not_contains_i: String
+  providerType_starts_with_i: String
+  providerType_not_starts_with_i: String
+  providerType_ends_with_i: String
+  providerType_not_ends_with_i: String
+  providerType_in: [String]
+  providerType_not_in: [String]
+  providerId: String
+  providerId_not: String
+  providerId_contains: String
+  providerId_not_contains: String
+  providerId_starts_with: String
+  providerId_not_starts_with: String
+  providerId_ends_with: String
+  providerId_not_ends_with: String
+  providerId_i: String
+  providerId_not_i: String
+  providerId_contains_i: String
+  providerId_not_contains_i: String
+  providerId_starts_with_i: String
+  providerId_not_starts_with_i: String
+  providerId_ends_with_i: String
+  providerId_not_ends_with_i: String
+  providerId_in: [String]
+  providerId_not_in: [String]
+  providerAccountId: String
+  providerAccountId_not: String
+  providerAccountId_contains: String
+  providerAccountId_not_contains: String
+  providerAccountId_starts_with: String
+  providerAccountId_not_starts_with: String
+  providerAccountId_ends_with: String
+  providerAccountId_not_ends_with: String
+  providerAccountId_i: String
+  providerAccountId_not_i: String
+  providerAccountId_contains_i: String
+  providerAccountId_not_contains_i: String
+  providerAccountId_starts_with_i: String
+  providerAccountId_not_starts_with_i: String
+  providerAccountId_ends_with_i: String
+  providerAccountId_not_ends_with_i: String
+  providerAccountId_in: [String]
+  providerAccountId_not_in: [String]
+  refreshToken: String
+  refreshToken_not: String
+  refreshToken_contains: String
+  refreshToken_not_contains: String
+  refreshToken_starts_with: String
+  refreshToken_not_starts_with: String
+  refreshToken_ends_with: String
+  refreshToken_not_ends_with: String
+  refreshToken_i: String
+  refreshToken_not_i: String
+  refreshToken_contains_i: String
+  refreshToken_not_contains_i: String
+  refreshToken_starts_with_i: String
+  refreshToken_not_starts_with_i: String
+  refreshToken_ends_with_i: String
+  refreshToken_not_ends_with_i: String
+  refreshToken_in: [String]
+  refreshToken_not_in: [String]
+  accessToken: String
+  accessToken_not: String
+  accessToken_contains: String
+  accessToken_not_contains: String
+  accessToken_starts_with: String
+  accessToken_not_starts_with: String
+  accessToken_ends_with: String
+  accessToken_not_ends_with: String
+  accessToken_i: String
+  accessToken_not_i: String
+  accessToken_contains_i: String
+  accessToken_not_contains_i: String
+  accessToken_starts_with_i: String
+  accessToken_not_starts_with_i: String
+  accessToken_ends_with_i: String
+  accessToken_not_ends_with_i: String
+  accessToken_in: [String]
+  accessToken_not_in: [String]
+  accessTokenExpires: String
+  accessTokenExpires_not: String
+  accessTokenExpires_lt: String
+  accessTokenExpires_lte: String
+  accessTokenExpires_gt: String
+  accessTokenExpires_gte: String
+  accessTokenExpires_in: [String]
+  accessTokenExpires_not_in: [String]
+  createdAt: String
+  createdAt_not: String
+  createdAt_lt: String
+  createdAt_lte: String
+  createdAt_gt: String
+  createdAt_gte: String
+  createdAt_in: [String]
+  createdAt_not_in: [String]
+  updatedAt: String
+  updatedAt_not: String
+  updatedAt_lt: String
+  updatedAt_lte: String
+  updatedAt_gt: String
+  updatedAt_gte: String
+  updatedAt_in: [String]
+  updatedAt_not_in: [String]
+  user: UserWhereInput
+  user_is_null: Boolean
+}
+
+input AccountWhereUniqueInput {
+  id: ID
+  providerId: String
+  providerAccountId: String
+  refreshToken: String
+  accessToken: String
+}
+
+enum SortAccountsBy {
+  id_ASC
+  id_DESC
+  providerType_ASC
+  providerType_DESC
+  providerId_ASC
+  providerId_DESC
+  providerAccountId_ASC
+  providerAccountId_DESC
+  refreshToken_ASC
+  refreshToken_DESC
+  accessToken_ASC
+  accessToken_DESC
+  accessTokenExpires_ASC
+  accessTokenExpires_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+}
+
+input AccountOrderByInput {
+  id: OrderDirection
+  providerType: OrderDirection
+  providerId: OrderDirection
+  providerAccountId: OrderDirection
+  refreshToken: OrderDirection
+  accessToken: OrderDirection
+  accessTokenExpires: OrderDirection
+  createdAt: OrderDirection
+  updatedAt: OrderDirection
+}
+
+enum OrderDirection {
+  asc
+  desc
+}
+
+input AccountUpdateInput {
+  providerType: String
+  providerId: String
+  providerAccountId: String
+  refreshToken: String
+  accessToken: String
+  accessTokenExpires: String
+  createdAt: String
+  updatedAt: String
+  user: UserRelateToOneInput
+}
+
+input UserRelateToOneInput {
+  create: UserCreateInput
+  connect: UserWhereUniqueInput
+  disconnect: UserWhereUniqueInput
+  disconnectAll: Boolean
+}
+
+input AccountsUpdateInput {
+  id: ID!
+  data: AccountUpdateInput
+}
+
+input AccountCreateInput {
+  providerType: String
+  providerId: String
+  providerAccountId: String
+  refreshToken: String
+  accessToken: String
+  accessTokenExpires: String
+  createdAt: String
+  updatedAt: String
+  user: UserRelateToOneInput
+}
+
+input AccountsCreateInput {
+  data: AccountCreateInput
+}
+
+type Session {
+  id: ID!
+  expires: String
+  sessionToken: String
+  accessToken: String
+  createdAt: String
+  updatedAt: String
+  user: User
+}
+
+input SessionWhereInput {
+  AND: [SessionWhereInput!]
+  OR: [SessionWhereInput!]
+  id: ID
+  id_not: ID
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  expires: String
+  expires_not: String
+  expires_lt: String
+  expires_lte: String
+  expires_gt: String
+  expires_gte: String
+  expires_in: [String]
+  expires_not_in: [String]
+  sessionToken: String
+  sessionToken_not: String
+  sessionToken_contains: String
+  sessionToken_not_contains: String
+  sessionToken_starts_with: String
+  sessionToken_not_starts_with: String
+  sessionToken_ends_with: String
+  sessionToken_not_ends_with: String
+  sessionToken_i: String
+  sessionToken_not_i: String
+  sessionToken_contains_i: String
+  sessionToken_not_contains_i: String
+  sessionToken_starts_with_i: String
+  sessionToken_not_starts_with_i: String
+  sessionToken_ends_with_i: String
+  sessionToken_not_ends_with_i: String
+  sessionToken_in: [String]
+  sessionToken_not_in: [String]
+  accessToken: String
+  accessToken_not: String
+  accessToken_contains: String
+  accessToken_not_contains: String
+  accessToken_starts_with: String
+  accessToken_not_starts_with: String
+  accessToken_ends_with: String
+  accessToken_not_ends_with: String
+  accessToken_i: String
+  accessToken_not_i: String
+  accessToken_contains_i: String
+  accessToken_not_contains_i: String
+  accessToken_starts_with_i: String
+  accessToken_not_starts_with_i: String
+  accessToken_ends_with_i: String
+  accessToken_not_ends_with_i: String
+  accessToken_in: [String]
+  accessToken_not_in: [String]
+  createdAt: String
+  createdAt_not: String
+  createdAt_lt: String
+  createdAt_lte: String
+  createdAt_gt: String
+  createdAt_gte: String
+  createdAt_in: [String]
+  createdAt_not_in: [String]
+  updatedAt: String
+  updatedAt_not: String
+  updatedAt_lt: String
+  updatedAt_lte: String
+  updatedAt_gt: String
+  updatedAt_gte: String
+  updatedAt_in: [String]
+  updatedAt_not_in: [String]
+  user: UserWhereInput
+  user_is_null: Boolean
+}
+
+input SessionWhereUniqueInput {
+  id: ID
+  sessionToken: String
+  accessToken: String
+}
+
+enum SortSessionsBy {
+  id_ASC
+  id_DESC
+  expires_ASC
+  expires_DESC
+  sessionToken_ASC
+  sessionToken_DESC
+  accessToken_ASC
+  accessToken_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+}
+
+input SessionOrderByInput {
+  id: OrderDirection
+  expires: OrderDirection
+  sessionToken: OrderDirection
+  accessToken: OrderDirection
+  createdAt: OrderDirection
+  updatedAt: OrderDirection
+}
+
+input SessionUpdateInput {
+  expires: String
+  sessionToken: String
+  accessToken: String
+  createdAt: String
+  updatedAt: String
+  user: UserRelateToOneInput
+}
+
+input SessionsUpdateInput {
+  id: ID!
+  data: SessionUpdateInput
+}
+
+input SessionCreateInput {
+  expires: String
+  sessionToken: String
+  accessToken: String
+  createdAt: String
+  updatedAt: String
+  user: UserRelateToOneInput
+}
+
+input SessionsCreateInput {
+  data: SessionCreateInput
+}
+
+type VerificationRequest {
+  id: ID!
+  identifier: String
+  token: String
+  expires: String
+}
+
+input VerificationRequestWhereInput {
+  AND: [VerificationRequestWhereInput!]
+  OR: [VerificationRequestWhereInput!]
+  id: ID
+  id_not: ID
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  identifier: String
+  identifier_not: String
+  identifier_contains: String
+  identifier_not_contains: String
+  identifier_starts_with: String
+  identifier_not_starts_with: String
+  identifier_ends_with: String
+  identifier_not_ends_with: String
+  identifier_i: String
+  identifier_not_i: String
+  identifier_contains_i: String
+  identifier_not_contains_i: String
+  identifier_starts_with_i: String
+  identifier_not_starts_with_i: String
+  identifier_ends_with_i: String
+  identifier_not_ends_with_i: String
+  identifier_in: [String]
+  identifier_not_in: [String]
+  token: String
+  token_not: String
+  token_contains: String
+  token_not_contains: String
+  token_starts_with: String
+  token_not_starts_with: String
+  token_ends_with: String
+  token_not_ends_with: String
+  token_i: String
+  token_not_i: String
+  token_contains_i: String
+  token_not_contains_i: String
+  token_starts_with_i: String
+  token_not_starts_with_i: String
+  token_ends_with_i: String
+  token_not_ends_with_i: String
+  token_in: [String]
+  token_not_in: [String]
+  expires: String
+  expires_not: String
+  expires_lt: String
+  expires_lte: String
+  expires_gt: String
+  expires_gte: String
+  expires_in: [String]
+  expires_not_in: [String]
+}
+
+input VerificationRequestWhereUniqueInput {
+  id: ID
+  identifier: String
+  token: String
+}
+
+enum SortVerificationRequestsBy {
+  id_ASC
+  id_DESC
+  identifier_ASC
+  identifier_DESC
+  token_ASC
+  token_DESC
+  expires_ASC
+  expires_DESC
+}
+
+input VerificationRequestOrderByInput {
+  id: OrderDirection
+  identifier: OrderDirection
+  token: OrderDirection
+  expires: OrderDirection
+}
+
+input VerificationRequestUpdateInput {
+  identifier: String
+  token: String
+  expires: String
+}
+
+input VerificationRequestsUpdateInput {
+  id: ID!
+  data: VerificationRequestUpdateInput
+}
+
+input VerificationRequestCreateInput {
+  identifier: String
+  token: String
+  expires: String
+}
+
+input VerificationRequestsCreateInput {
+  data: VerificationRequestCreateInput
+}
+
 type User {
   id: ID!
   name: String
@@ -5,6 +484,7 @@ type User {
   title: String
   location: String
   email: String
+  image: String
   password: PasswordState
   posts(
     where: PostWhereInput! = {}
@@ -28,6 +508,10 @@ type User {
       reason: "This query will be removed in a future version. Please use postsCount instead."
     )
   postsCount(where: PostWhereInput! = {}): Int
+  accounts: Account
+  sessions: Session
+  createdAt: String
+  updatedAt: String
 }
 
 type PasswordState {
@@ -139,10 +623,48 @@ input UserWhereInput {
   email_not_ends_with_i: String
   email_in: [String]
   email_not_in: [String]
+  image: String
+  image_not: String
+  image_contains: String
+  image_not_contains: String
+  image_starts_with: String
+  image_not_starts_with: String
+  image_ends_with: String
+  image_not_ends_with: String
+  image_i: String
+  image_not_i: String
+  image_contains_i: String
+  image_not_contains_i: String
+  image_starts_with_i: String
+  image_not_starts_with_i: String
+  image_ends_with_i: String
+  image_not_ends_with_i: String
+  image_in: [String]
+  image_not_in: [String]
   password_is_set: Boolean
   posts_every: PostWhereInput
   posts_some: PostWhereInput
   posts_none: PostWhereInput
+  accounts: AccountWhereInput
+  accounts_is_null: Boolean
+  sessions: SessionWhereInput
+  sessions_is_null: Boolean
+  createdAt: String
+  createdAt_not: String
+  createdAt_lt: String
+  createdAt_lte: String
+  createdAt_gt: String
+  createdAt_gte: String
+  createdAt_in: [String]
+  createdAt_not_in: [String]
+  updatedAt: String
+  updatedAt_not: String
+  updatedAt_lt: String
+  updatedAt_lte: String
+  updatedAt_gt: String
+  updatedAt_gte: String
+  updatedAt_in: [String]
+  updatedAt_not_in: [String]
 }
 
 input UserWhereUniqueInput {
@@ -163,6 +685,12 @@ enum SortUsersBy {
   location_DESC
   email_ASC
   email_DESC
+  image_ASC
+  image_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
 }
 
 input UserOrderByInput {
@@ -172,11 +700,9 @@ input UserOrderByInput {
   title: OrderDirection
   location: OrderDirection
   email: OrderDirection
-}
-
-enum OrderDirection {
-  asc
-  desc
+  image: OrderDirection
+  createdAt: OrderDirection
+  updatedAt: OrderDirection
 }
 
 input UserUpdateInput {
@@ -185,14 +711,33 @@ input UserUpdateInput {
   title: String
   location: String
   email: String
+  image: String
   password: String
   posts: PostRelateToManyInput
+  accounts: AccountRelateToOneInput
+  sessions: SessionRelateToOneInput
+  createdAt: String
+  updatedAt: String
 }
 
 input PostRelateToManyInput {
   create: [PostCreateInput]
   connect: [PostWhereUniqueInput]
   disconnect: [PostWhereUniqueInput]
+  disconnectAll: Boolean
+}
+
+input AccountRelateToOneInput {
+  create: AccountCreateInput
+  connect: AccountWhereUniqueInput
+  disconnect: AccountWhereUniqueInput
+  disconnectAll: Boolean
+}
+
+input SessionRelateToOneInput {
+  create: SessionCreateInput
+  connect: SessionWhereUniqueInput
+  disconnect: SessionWhereUniqueInput
   disconnectAll: Boolean
 }
 
@@ -207,8 +752,13 @@ input UserCreateInput {
   title: String
   location: String
   email: String
+  image: String
   password: String
   posts: PostRelateToManyInput
+  accounts: AccountRelateToOneInput
+  sessions: SessionRelateToOneInput
+  createdAt: String
+  updatedAt: String
 }
 
 input UsersCreateInput {
@@ -327,13 +877,6 @@ input PostUpdateInput {
   publishDate: String
   author: UserRelateToOneInput
   tags: TagRelateToManyInput
-}
-
-input UserRelateToOneInput {
-  create: UserCreateInput
-  connect: UserWhereUniqueInput
-  disconnect: UserWhereUniqueInput
-  disconnectAll: Boolean
 }
 
 input TagRelateToManyInput {
@@ -466,6 +1009,33 @@ scalar JSON
   )
 
 type Mutation {
+  createAccount(data: AccountCreateInput): Account
+  createAccounts(data: [AccountsCreateInput]): [Account]
+  updateAccount(id: ID!, data: AccountUpdateInput): Account
+  updateAccounts(data: [AccountsUpdateInput]): [Account]
+  deleteAccount(id: ID!): Account
+  deleteAccounts(ids: [ID!]): [Account]
+  createSession(data: SessionCreateInput): Session
+  createSessions(data: [SessionsCreateInput]): [Session]
+  updateSession(id: ID!, data: SessionUpdateInput): Session
+  updateSessions(data: [SessionsUpdateInput]): [Session]
+  deleteSession(id: ID!): Session
+  deleteSessions(ids: [ID!]): [Session]
+  createVerificationRequest(
+    data: VerificationRequestCreateInput
+  ): VerificationRequest
+  createVerificationRequests(
+    data: [VerificationRequestsCreateInput]
+  ): [VerificationRequest]
+  updateVerificationRequest(
+    id: ID!
+    data: VerificationRequestUpdateInput
+  ): VerificationRequest
+  updateVerificationRequests(
+    data: [VerificationRequestsUpdateInput]
+  ): [VerificationRequest]
+  deleteVerificationRequest(id: ID!): VerificationRequest
+  deleteVerificationRequests(ids: [ID!]): [VerificationRequest]
   createUser(data: UserCreateInput): User
   createUsers(data: [UsersCreateInput]): [User]
   updateUser(id: ID!, data: UserUpdateInput): User
@@ -525,6 +1095,77 @@ input CreateInitialUserInput {
 }
 
 type Query {
+  allAccounts(
+    where: AccountWhereInput! = {}
+    search: String
+    sortBy: [SortAccountsBy!]
+      @deprecated(reason: "sortBy has been deprecated in favour of orderBy")
+    orderBy: [AccountOrderByInput!]! = []
+    first: Int
+    skip: Int! = 0
+  ): [Account!]
+  Account(where: AccountWhereUniqueInput!): Account
+  _allAccountsMeta(
+    where: AccountWhereInput! = {}
+    search: String
+    sortBy: [SortAccountsBy!]
+      @deprecated(reason: "sortBy has been deprecated in favour of orderBy")
+    orderBy: [AccountOrderByInput!]! = []
+    first: Int
+    skip: Int! = 0
+  ): _QueryMeta
+    @deprecated(
+      reason: "This query will be removed in a future version. Please use accountsCount instead."
+    )
+  accountsCount(where: AccountWhereInput! = {}): Int
+  allSessions(
+    where: SessionWhereInput! = {}
+    search: String
+    sortBy: [SortSessionsBy!]
+      @deprecated(reason: "sortBy has been deprecated in favour of orderBy")
+    orderBy: [SessionOrderByInput!]! = []
+    first: Int
+    skip: Int! = 0
+  ): [Session!]
+  Session(where: SessionWhereUniqueInput!): Session
+  _allSessionsMeta(
+    where: SessionWhereInput! = {}
+    search: String
+    sortBy: [SortSessionsBy!]
+      @deprecated(reason: "sortBy has been deprecated in favour of orderBy")
+    orderBy: [SessionOrderByInput!]! = []
+    first: Int
+    skip: Int! = 0
+  ): _QueryMeta
+    @deprecated(
+      reason: "This query will be removed in a future version. Please use sessionsCount instead."
+    )
+  sessionsCount(where: SessionWhereInput! = {}): Int
+  allVerificationRequests(
+    where: VerificationRequestWhereInput! = {}
+    search: String
+    sortBy: [SortVerificationRequestsBy!]
+      @deprecated(reason: "sortBy has been deprecated in favour of orderBy")
+    orderBy: [VerificationRequestOrderByInput!]! = []
+    first: Int
+    skip: Int! = 0
+  ): [VerificationRequest!]
+  VerificationRequest(
+    where: VerificationRequestWhereUniqueInput!
+  ): VerificationRequest
+  _allVerificationRequestsMeta(
+    where: VerificationRequestWhereInput! = {}
+    search: String
+    sortBy: [SortVerificationRequestsBy!]
+      @deprecated(reason: "sortBy has been deprecated in favour of orderBy")
+    orderBy: [VerificationRequestOrderByInput!]! = []
+    first: Int
+    skip: Int! = 0
+  ): _QueryMeta
+    @deprecated(
+      reason: "This query will be removed in a future version. Please use verificationRequestsCount instead."
+    )
+  verificationRequestsCount(where: VerificationRequestWhereInput! = {}): Int
   allUsers(
     where: UserWhereInput! = {}
     search: String
