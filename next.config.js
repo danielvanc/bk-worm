@@ -12,4 +12,8 @@ module.exports = {
   webpack5: false,
   reactStrictMode: true,
   rewrites: () => [STUDIO_REWRITE],
+
+  typescript: {
+    ignoreBuildErrors: true,
+  },
 }
