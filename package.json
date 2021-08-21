@@ -3,9 +3,6 @@
   "version": "1.0.0",
   "private": true,
   "author": "Daniel Van Cuylenburg <email@danielvanc.com> (https://danielvanc.com/)",
-  "engines": {
-    "node": ">=16.2.0"
-  },
   "scripts": {
     "dev": "next dev",
     "prebuild": "echo 'Building Sanity to public/studio' && cd studio && yarn && npx sanity build ../public/studio -y && echo 'Done'",
