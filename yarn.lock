@@ -7720,6 +7720,11 @@ same-origin@^0.1.1:
   resolved "https://registry.yarnpkg.com/same-origin/-/same-origin-0.1.1.tgz#c2287d3192577df517acbbd6d1451a9c3c3914f5"
   integrity sha1-wih9MZJXffUXrLvW0UUanDw5FPU=
 
+sanity@^2.14.0:
+  version "2.14.0"
+  resolved "https://registry.yarnpkg.com/sanity/-/sanity-2.14.0.tgz#d4d383e10fbf3d40a644297b2aa2df9bf5e1b461"
+  integrity sha512-jOwIM46Kp5X8Xqfidr1zV0cwcVtlTRM3QqK0SWlvZBd30Rl2XQMZbq1XJ84IfRmnoaWE+g8uLd1hKo2+XgYSBA==
+
 sax@>=0.6.0:
   version "1.2.4"
   resolved "https://registry.yarnpkg.com/sax/-/sax-1.2.4.tgz#2816234e2378bddc4e5354fab5caa895df7100d9"
