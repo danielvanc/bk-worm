@@ -2,7 +2,6 @@ import Head from 'next/head'
 import React from 'react';
 import dynamic from 'next/dynamic'
 import { signIn, signOut, Provider, useSession } from 'next-auth/client';
-import prisma from '../../lib/prisma';
 
 const Loading = () => <p>Loading...</p>
 
@@ -38,8 +37,7 @@ export default function Home() {
   )
 }
 
-export async function getStaticProps() {
-  const Users = await prisma.user.findMany()
+// export async function getStaticProps() {
 
-  return { props: { Users } }
-}
+//   return { props: {} }
+// }
