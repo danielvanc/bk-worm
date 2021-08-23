@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import React from 'react';
 import dynamic from 'next/dynamic'
-import { signIn, signOut, Provider, useSession } from 'next-auth/client';
+import { useAuth } from 'context/auth'
 
 const Loading = () => <p>Loading...</p>
 
@@ -16,7 +16,8 @@ const UnAuthenticatedApp = dynamic(
 );
 
 export default function Home() {
-  const [session, loading] = useSession()
+  const { session } = useAuth()
+  
   return (
     <div> 
       <Head>
@@ -25,11 +26,11 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      {!session && (
+      {!session?.user && (
         <UnAuthenticatedApp />
       )}
       
-      {session && (
+      {session?.user && (
         <AuthenticatedApp />
       )}
       
@@ -38,6 +39,5 @@ export default function Home() {
 }
 
 // export async function getStaticProps() {
-
 //   return { props: {} }
 // }

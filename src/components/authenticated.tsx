@@ -1,14 +1,13 @@
 import React from 'react'
-import { signIn, signOut, Provider, useSession } from 'next-auth/client';
+import { useAuth } from 'context/auth'
 
 export default function Authenticated() {
-  // const [session, loading] = useSession();
+  const { session } = useAuth()
+
   return (
     <div>
       <h1>Authenticated!</h1>
-
-      {/* Signed in as {session.user.email} <br/> */}
-      <button onClick={() => signOut()}>Sign out</button>
+      <button onClick={() => session.signOut()}>Sign out</button>
     </div>
   )
 }

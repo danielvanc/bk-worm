@@ -1,19 +1,13 @@
-import 'tailwindcss/tailwind.css'
 import type { AppProps } from 'next/app'
 import dynamic from 'next/dynamic'
-import { signIn, signOut, Provider, useSession } from 'next-auth/client';
-
-
-
+import AppProviders from 'context'
+import 'tailwindcss/tailwind.css'
 
 function App({ Component, pageProps }: AppProps) {
-  // Load user info here
-  // const [session, loading] = useSession();
   return (
-    <Provider session={pageProps.session}>
+    <AppProviders>
       <Component {...pageProps} />
-    </Provider>
+    </AppProviders>
   )
-  
 }
 export default App

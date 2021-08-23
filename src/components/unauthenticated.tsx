@@ -1,13 +1,13 @@
 import React from 'react'
-import { signUp } from 'next-auth-sanity/';
-import { signIn } from 'next-auth/client';
+import { useAuth } from 'context/auth'
 
 export default function Unauthenticated() {
+  const { session } = useAuth();
   return (
     <div>
       <h1>You are unauthenticated!</h1>
       
-      <button onClick={() => signIn()}>Sign in</button>
+      <button onClick={() => session.signIn()}>Sign in</button>
     </div>
   )
 }

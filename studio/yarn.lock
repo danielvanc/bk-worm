@@ -1167,6 +1167,11 @@
     get-random-values "^1.2.2"
     lodash "^4.17.15"
 
+"@sanity/cli@^2.15.0":
+  version "2.15.0"
+  resolved "https://registry.yarnpkg.com/@sanity/cli/-/cli-2.15.0.tgz#cc41b583a3a4dd458d969510362ded4bcf6fdd99"
+  integrity sha512-q6Nc6K4eJ6qLbMwIRtqMWs38RH0kRsMLJo/Yz4IPoku5a28T+VtHxSG6KqGQeLIgeBV0VSoWHfe2MtavfTMqBw==
+
 "@sanity/client@2.14.0":
   version "2.14.0"
   resolved "https://registry.npmjs.org/@sanity/client/-/client-2.14.0.tgz#c1d4f2e4b281b0c1e6fabfb6c9b7badb68d37b54"
@@ -4692,7 +4697,7 @@ glob@^7.1.3, glob@^7.1.4, glob@~7.1.6:
 
 global@^4.3.0, global@^4.4.0:
   version "4.4.0"
-  resolved "https://registry.npmjs.org/global/-/global-4.4.0.tgz#3e7b105179006a323ed71aafca3e9c57a5cc6406"
+  resolved "https://registry.yarnpkg.com/global/-/global-4.4.0.tgz#3e7b105179006a323ed71aafca3e9c57a5cc6406"
   integrity sha512-wv/LAoHdRE3BeTGz53FAamhGlPLhlssK45usmGFThIi4XqnBmjKQ16u+RNbP7WvigRZDxUsM0J3gcQ5yicaL0w==
   dependencies:
     min-document "^2.19.0"
@@ -8425,6 +8430,11 @@ sanity-diff-patch@^1.0.9:
   integrity sha512-J5YeuM/S7rLTp51iqUunwzz7Rf68K/jCDGKtNCj6Wzcfgf9CH+0GtPlvf2DFsg0QQhYYZ72FOVn6skmoLjMCdw==
   dependencies:
     diff-match-patch "^1.0.5"
+
+sanity@^2.14.0:
+  version "2.14.0"
+  resolved "https://registry.yarnpkg.com/sanity/-/sanity-2.14.0.tgz#d4d383e10fbf3d40a644297b2aa2df9bf5e1b461"
+  integrity sha512-jOwIM46Kp5X8Xqfidr1zV0cwcVtlTRM3QqK0SWlvZBd30Rl2XQMZbq1XJ84IfRmnoaWE+g8uLd1hKo2+XgYSBA==
 
 sax@~1.2.4:
   version "1.2.4"
