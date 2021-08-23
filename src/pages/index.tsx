@@ -1,40 +1,14 @@
-import Head from 'next/head'
 import React from 'react';
-import dynamic from 'next/dynamic'
-import { useAuth } from 'context/auth'
+import Page from 'components/Page';
+import BookList from 'components/BookList';
 
-const Loading = () => <p>Loading...</p>
-
-const AuthenticatedApp = dynamic(
-  () => import('../components/authenticated'),
-  { loading: Loading }
-);
-
-const UnAuthenticatedApp = dynamic(
-  () => import('../components/unauthenticated'),
-  { loading: Loading }
-);
-
-export default function Home() {
-  const { session } = useAuth()
-  
+export default function Home() {  
   return (
-    <div> 
-      <Head>
-        <title>BK Worm</title>
-        <meta name="description" content="The book app for book lovers" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
-      {!session?.user && (
-        <UnAuthenticatedApp />
-      )}
+    <Page>
+      <h1>Home</h1>
       
-      {session?.user && (
-        <AuthenticatedApp />
-      )}
-      
-    </div>
+      <BookList />
+    </Page>
   )
 }
 
