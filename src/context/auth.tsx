@@ -1,10 +1,11 @@
 import * as React from 'react'
 import { signIn, signOut, useSession } from 'next-auth/client';
 
-const AuthContext = React.createContext();
+const AuthContext = React.createContext({})
 AuthContext.displayName = "AuthContext"
 
 export default function AuthProvider(props) {
+
   const [session, loading] = useSession();
 
   const value = {
@@ -18,9 +19,7 @@ export default function AuthProvider(props) {
 // TODO: Add extra possible states
 
   // If success
-  return (
-    <AuthContext.Provider value= { value } {...props } />
-  )
+  return <AuthContext.Provider value={ value } {...props } />
 }
 
 
