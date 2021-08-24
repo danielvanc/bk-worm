@@ -15,14 +15,13 @@ const UnAuthenticatedApp = dynamic(
   { loading: Loading }
 );
 
-export default function Page({ children }) {
+export default function Page({ title="BK Worm", desc="The book app for book lovers", children }) {
   const { session } = useAuth()
   return (
     <div>
-
       <Head>
-        <title>BK Worm</title>
-        <meta name="description" content="The book app for book lovers" />
+        <title>{title}</title>
+        <meta name="description" content={desc} />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
