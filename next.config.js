@@ -14,6 +14,6 @@ module.exports = {
   rewrites: () => [STUDIO_REWRITE],
 
   typescript: {
-    ignoreBuildErrors: true,
+    ignoreBuildErrors: false,
   },
-}
+};

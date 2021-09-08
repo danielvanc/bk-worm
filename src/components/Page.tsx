@@ -1,22 +1,25 @@
-import React from 'react'
-import Head from 'next/head'
-import dynamic from 'next/dynamic'
-import { useAuth } from 'context/auth'
+import React from "react";
+import Head from "next/head";
+import dynamic from "next/dynamic";
+import { PageProps } from "types";
+import { useAuth } from "context/auth";
 
-const Loading = () => <p>Loading...</p>
+const Loading = () => <p>Loading...</p>;
 
-const AuthenticatedApp = dynamic(
-  () => import('./authenticated'),
-  { loading: Loading }
-);
+const AuthenticatedApp = dynamic(() => import("./authenticated"), {
+  loading: Loading,
+});
 
-const UnAuthenticatedApp = dynamic(
-  () => import('./unauthenticated'),
-  { loading: Loading }
-);
+const UnAuthenticatedApp = dynamic(() => import("./unauthenticated"), {
+  loading: Loading,
+});
 
-export default function Page({ title="BK Worm", desc="The book app for book lovers", children }) {
-  const { session } = useAuth()
+export default function Page({
+  title = "BK Worm",
+  desc = "The book app for book lovers",
+  children,
+}: PageProps) {
+  const { session } = useAuth();
   return (
     <div>
       <Head>
@@ -25,16 +28,9 @@ export default function Page({ title="BK Worm", desc="The book app for book love
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      {!session?.user && (
-        <UnAuthenticatedApp />
-      )}
-      
-      {session?.user && (
-        <AuthenticatedApp>
-          {children}
-        </AuthenticatedApp>
-      )}      
-      
+      {!session?.user && <UnAuthenticatedApp />}
+
+      {session?.user && <AuthenticatedApp>{children}</AuthenticatedApp>}
     </div>
-  )
+  );
 }
