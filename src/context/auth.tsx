@@ -1,37 +1,36 @@
-import * as React from 'react'
-import { signIn, signOut, useSession } from 'next-auth/client';
+import * as React from "react";
+import { signIn, signOut, useSession } from "next-auth/client";
+import { UseAuthProps, inputProviderProps } from "interfaces";
 
-const AuthContext = React.createContext({})
-AuthContext.displayName = "AuthContext"
+const AuthContext = React.createContext({} as UseAuthProps);
+AuthContext.displayName = "AuthContext";
 
-export default function AuthProvider(props) {
-
+export default function AuthProvider(props: inputProviderProps) {
   const [session, loading] = useSession();
 
   const value = {
     session: {
       ...session,
       signIn,
-      signOut
-    }
-  }
+      signOut,
+    },
+  };
 
-// TODO: Add extra possible states
+  // TODO: Add extra possible states
 
   // If success
-  return <AuthContext.Provider value={ value } {...props } />
+  return <AuthContext.Provider value={value} {...props} />;
 }
-
 
 // Using this so that we have access to everything the user has
 // saved. Including the session token the user is authenticated with
-    
+
 export function useAuth() {
   const context = React.useContext(AuthContext);
 
   if (context === undefined) {
-    throw new Error('useAuth must be used within an AuthProvider');
+    throw new Error("useAuth must be used within an AuthProvider");
   }
 
-  return context
+  return context;
 }

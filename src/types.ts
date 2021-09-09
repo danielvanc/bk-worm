@@ -16,3 +16,17 @@ export type PageProps = {
   desc?: string;
   children: ReactNode;
 };
+
+export type AppProvidersProps = {
+  children: ReactNode;
+};
+
+export type AuthenticatedProps = {
+  children: ReactNode;
+};
+
+export type Action =
+  | { type: "idle"; payload?: boolean; data?: []; error?: boolean }
+  | { type: "pending"; payload?: boolean; data?: []; error?: boolean }
+  | { type: "resolved"; payload?: boolean; data?: []; error?: boolean }
+  | { type: "rejected"; payload?: boolean; data?: []; error?: boolean };

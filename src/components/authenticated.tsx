@@ -1,8 +1,9 @@
-import React from 'react'
-import { useAuth } from 'context/auth'
+import React from "react";
+import { useAuth } from "context/auth";
+import { AuthenticatedProps } from "types";
 
-export default function Authenticated({ children }) {
-  const { session } = useAuth()
+export default function Authenticated({ children }: AuthenticatedProps) {
+  const { session } = useAuth();
 
   return (
     <div>
@@ -11,5 +12,5 @@ export default function Authenticated({ children }) {
 
       {children}
     </div>
-  )
+  );
 }
