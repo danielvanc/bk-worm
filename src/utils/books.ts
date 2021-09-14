@@ -15,6 +15,7 @@ export function useBookList(endpoint = '""'): BookList {
   const listApi = process.env.NEXT_PUBLIC_ALL_BOOKS_API;
   // Might need the users session details for finding faved books etc
   const { session } = useAuth();
+  // console.log("session", session);
 
   const [books, setBooks] = React.useState<IBooks>();
   const { data, isIdle, isLoading, isError, isSuccess, run } = useAsync();
