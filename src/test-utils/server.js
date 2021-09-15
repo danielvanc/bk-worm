@@ -1,16 +1,9 @@
-import { setupWorker } from "msw";
+import { setupServer } from "msw/node";
 import { handlers } from "./server-handlers";
-import { homepage } from "../../package.json";
 
-setupWorker(...handlers);
+setupServer(...handlers);
 
-const fullUrl = new URL("http://localhost:3000");
-
-const server = setupWorker(...handlers);
-
-server.start({
-  quiet: true,
-  serviceWorker: {
-    url: fullUrl.pathname + "mockServiceWorker.js",
-  },
-});
+const server = setupServer(...handlers);
+// server.printHandlers();
+export * from "msw";
+export { server };

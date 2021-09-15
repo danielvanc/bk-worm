@@ -12,10 +12,10 @@ import { BookList } from "types";
   Usage: const data = useBookList('""&maxResults=2')
 */
 export function useBookList(endpoint = '""'): BookList {
-  const listApi = process.env.NEXT_PUBLIC_ALL_BOOKS_API;
+  // const listApi = process.env.NEXT_PUBLIC_ALL_BOOKS_API;
+  const listApi = "https://www.googleapis.com/books/v1/volumes?q=";
   // Might need the users session details for finding faved books etc
   const { session } = useAuth();
-  // console.log("session", session);
 
   const [books, setBooks] = React.useState<IBooks>();
   const { data, isIdle, isLoading, isError, isSuccess, run } = useAsync();
@@ -44,7 +44,6 @@ export function useBookList(endpoint = '""'): BookList {
   React.useEffect(() => {
     if (data?.items) {
       setBooks(data.items);
-      console.log("items:", data.items);
     }
   }, [data]);
 

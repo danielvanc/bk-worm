@@ -91,4 +91,9 @@ function hash(str) {
   return String(hash >>> 0);
 }
 
-export { authenticate, create, read };
+async function reset() {
+  users = {};
+  persist();
+}
+
+export { authenticate, create, read, reset };

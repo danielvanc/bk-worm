@@ -5,16 +5,17 @@ import {
   cleanup,
   screen,
   loginAsUser,
+  act,
 } from "../test-utils/index";
 import client from "next-auth/client";
-import Home from "../pages/index";
+import Page from "components/Page";
 
 jest.mock("next-auth/client");
 
-async function renderBookScreen({ user } = {}) {
+async function renderScaffold({ user } = {}) {
   if (user === undefined) {
     // First ensure user is shown the 'unauthenticated' screen
-    rtlRender(<Home />);
+    rtlRender(<Page />);
     const heading = screen.getByRole("heading", {
       name: /You are unauthenticated!/i,
     });
@@ -34,7 +35,7 @@ async function renderBookScreen({ user } = {}) {
 
   client.useSession.mockReturnValueOnce([mockSession, false]);
 
-  const utils = await render(<Home />, { route, user });
+  const utils = await render(<Page />, { route });
 
   return {
     ...utils,
@@ -42,15 +43,16 @@ async function renderBookScreen({ user } = {}) {
   };
 }
 
-test("render`s logged in screen", async () => {
-  const { debug, user } = await renderBookScreen();
+test("authenticates and render`s logged in screen", async () => {
+  const { debug, user } = await renderScaffold();
 
-  // Check authenticated screen and elements are showing...
-  const discoverHeading = screen.getByRole("heading", {
-    name: /Discover new books/i,
+  const authHeading = screen.getByRole("heading", {
+    name: /Authenticated/i,
   });
-  expect(discoverHeading).toBeInTheDocument();
 
-  debug();
-  // TODO: Authenticate with provider to display list of books
+  expect(user).toBeTruthy();
+
+  expect(authHeading).toBeInTheDocument();
 });
+
+test.todo("displays books once logged in");

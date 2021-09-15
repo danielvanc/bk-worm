@@ -15,7 +15,7 @@ const waitForLoadingToFinish = () =>
     { timeout: 2000 }
   );
 
-async function render(ui, { route = "/", user, ...renderOptions } = {}) {
+async function render(ui, { route = "/", user, books, ...renderOptions } = {}) {
   user = typeof user === "undefined" ? await loginAsUser() : user;
   window.history.pushState({}, "Test page", route);
 
@@ -25,6 +25,7 @@ async function render(ui, { route = "/", user, ...renderOptions } = {}) {
       ...renderOptions,
     }),
     user,
+    books,
   };
 
   // wait for react-query to settle before allowing the test to continue
