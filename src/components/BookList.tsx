@@ -8,6 +8,7 @@ export default function BookList() {
     <div>
       <hr />
       <h1>Discover new books!</h1>
+      {/* TODO: Add generic list component here */}
       {books && (
         <ul>
           {books.map((book) => (

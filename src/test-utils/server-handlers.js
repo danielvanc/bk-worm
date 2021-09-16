@@ -167,11 +167,13 @@ const book = [
 const handlers = [
   rest.get(
     "https://www.googleapis.com/books/v1/volumes",
+    // "http://localhost:3000/",
     async (req, res, ctx) => {
       const user = await getUser(req);
       const token = getToken(req);
-
-      return res(ctx.json({ user: { ...user, token } }));
+      console.log("Boooooooo");
+      // return res(ctx.json({ user: { ...user, token } }));
+      return res(ctx.json({ books: book }));
     }
   ),
 ];

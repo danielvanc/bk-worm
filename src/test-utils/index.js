@@ -16,9 +16,10 @@ const waitForLoadingToFinish = () =>
   );
 
 async function render(ui, { route = "/", user, books, ...renderOptions } = {}) {
-  user = typeof user === "undefined" ? await loginAsUser() : user;
+  // console.log("user", user, books);
+  // user = typeof user === "undefined" ? await loginAsUser() : user;
   window.history.pushState({}, "Test page", route);
-
+  // console.log(document.location.pathname);
   const returnValue = {
     ...rtlRender(ui, {
       wrapper: AppProviders,
