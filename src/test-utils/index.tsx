@@ -9,9 +9,11 @@ import {
 import userEvent from "@testing-library/user-event";
 import client from "next-auth/client";
 import { buildUser } from "./generate";
-import * as usersDB from "../test-utils/data/users";
+import * as usersDB from "./data/users";
 import Page from "components/Page";
 import AppProviders from "context";
+
+import { IRender, IUserProps, IAuthUser } from "interfaces";
 
 const waitForLoadingToFinish = () =>
   waitForElementToBeRemoved(
@@ -19,7 +21,10 @@ const waitForLoadingToFinish = () =>
     { timeout: 2000 }
   );
 
-async function render(ui, { route = "/", user, books, ...renderOptions } = {}) {
+async function render(
+  ui: React.ReactElement,
+  { route = "/", user, books, ...renderOptions }: IRender
+) {
   // console.log("user", user, books);
   // user = typeof user === "undefined" ? await loginAsUser() : user;
   window.history.pushState({}, "Test page", route);
@@ -40,7 +45,7 @@ async function render(ui, { route = "/", user, books, ...renderOptions } = {}) {
 }
 const localStorageKey = "__bkworm_auth_provider_token__";
 
-async function loginAsUser(userProperties) {
+async function loginAsUser(userProperties?: IUserProps) {
   const user = buildUser(userProperties);
   await usersDB.create(user);
   const authUser = await usersDB.authenticate(user);
@@ -49,7 +54,7 @@ async function loginAsUser(userProperties) {
   return authUser;
 }
 
-async function renderScaffold({ user } = {}) {
+async function renderScaffold(user?: IAuthUser) {
   if (user === undefined) {
     // First ensure user is shown the 'unauthenticated' screen
     rtlRender(<Page />);
@@ -70,9 +75,10 @@ async function renderScaffold({ user } = {}) {
     user,
   };
 
-  client.useSession.mockReturnValueOnce([mockSession, false]);
+  const mockedClient = client.useSession as jest.Mock;
+  mockedClient.mockReturnValueOnce([mockSession, false]);
 
-  let utils;
+  let utils: object = {};
   await act(async () => {
     utils = await render(<Page />, { route });
   });

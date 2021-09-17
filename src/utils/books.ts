@@ -43,7 +43,6 @@ export function useBookList(endpoint = '""'): BookList {
 
   React.useEffect(() => {
     if (data?.items) {
-      console.log("data?.items", data?.items);
       setBooks(data.items);
     }
   }, [data]);

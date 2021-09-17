@@ -14,11 +14,11 @@ export type IBooks = BookFields[];
 export type PageProps = {
   title?: string;
   desc?: string;
-  children: ReactNode;
+  children?: ReactNode;
 };
 
 export type AppProvidersProps = {
-  children: ReactNode;
+  children?: ReactNode;
 };
 
 export type AuthenticatedProps = {
