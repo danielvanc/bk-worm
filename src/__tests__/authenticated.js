@@ -6,6 +6,7 @@ import {
   renderScaffold,
   useGetBooks,
   setReturnValue,
+  within,
 } from "../test-utils/index";
 
 import BookList from "components/BookList";
@@ -24,26 +25,34 @@ test("authenticates and render`s logged in status", async () => {
     name: /Authenticated/i,
   });
 
-  expect(user).toBeTruthy();
+  const logoutButton = screen.getByRole("button", { name: /sign out/i });
 
+  expect(user).toBeTruthy();
   expect(authHeading).toBeInTheDocument();
+  expect(logoutButton).toBeInTheDocument();
 });
 
 test("displays book(s) once logged in", async () => {
-  const { debug } = await renderScaffold();
+  await renderScaffold();
 
   useBookList.mockImplementation(useGetBooks);
 
   rtlRender(<BookList />);
+  let tempBookHeading = screen.getByRole("heading", { name: /Temp book/i });
+  expect(tempBookHeading).toBeInTheDocument();
 
-  debug();
-  // TODO: Add assertion here to test if fake book is rendered
-
+  // Fake response from api with fake data and update component's state
   act(() => {
     setReturnValue(fakeBooksData);
   });
 
-  debug();
-  // TODO: Add assertion here for fake book NOT to be in the document
-  // TODO: Add assertion here for all books that have loaded
+  // Assert response with rendered fake data list items
+  const inBookList = within(screen.getByRole("list-items"));
+  expect(inBookList).toBeTruthy();
+
+  tempBookHeading = inBookList.queryByRole("heading", { name: /Temp book/i });
+  expect(tempBookHeading).not.toBeInTheDocument();
+
+  const listItems = inBookList.getAllByRole("listitem");
+  expect(listItems).toHaveLength(2);
 });

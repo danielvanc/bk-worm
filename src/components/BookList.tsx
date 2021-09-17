@@ -10,7 +10,7 @@ export default function BookList() {
       <h1>Discover new books!</h1>
       {/* TODO: Add generic list component here */}
       {books && (
-        <ul>
+        <ul role="list-items">
           {books.map((book) => (
             <li key={book.id}>
               <h2>{book?.volumeInfo?.title}</h2>
