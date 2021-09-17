@@ -1,6 +1,6 @@
 import faker from "faker";
 
-function buildUser(overrides) {
+function buildUser(overrides?: object) {
   return {
     id: faker.datatype.uuid(),
     username: faker.internet.userName(),
