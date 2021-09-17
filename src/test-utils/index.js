@@ -2,11 +2,15 @@ import React from "react";
 import {
   render as rtlRender,
   screen,
+  cleanup,
+  act,
   waitForElementToBeRemoved,
 } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import client from "next-auth/client";
 import { buildUser } from "./generate";
 import * as usersDB from "../test-utils/data/users";
+import Page from "components/Page";
 import AppProviders from "context";
 
 const waitForLoadingToFinish = () =>
@@ -45,6 +49,66 @@ async function loginAsUser(userProperties) {
   return authUser;
 }
 
+async function renderScaffold({ user } = {}) {
+  if (user === undefined) {
+    // First ensure user is shown the 'unauthenticated' screen
+    rtlRender(<Page />);
+    const heading = screen.getByRole("heading", {
+      name: /You are unauthenticated!/i,
+    });
+    expect(heading).toBeInTheDocument();
+    cleanup();
+
+    // Not logged in so thet's get a user
+    user = await loginAsUser();
+  }
+
+  const route = `/`;
+
+  const mockSession = {
+    expires: "1",
+    user,
+  };
+
+  client.useSession.mockReturnValueOnce([mockSession, false]);
+
+  let utils;
+  await act(async () => {
+    utils = await render(<Page />, { route });
+  });
+
+  return {
+    ...utils,
+    user,
+  };
+}
+
+let setReturnValue;
+
+function useGetBooks() {
+  const loadingBooks = [
+    {
+      id: 0,
+      title: "",
+      image: "",
+      description: "",
+      volumeInfo: { title: "Temp book" },
+    },
+  ];
+  const state = React.useState(loadingBooks);
+  setReturnValue = state[1];
+  return { books: state[0] };
+}
+
 export * from "@testing-library/react";
 
-export { render, rtlRender, loginAsUser, waitForLoadingToFinish, userEvent };
+export {
+  render,
+  rtlRender,
+  loginAsUser,
+  renderScaffold,
+  useGetBooks,
+  setReturnValue,
+  waitForLoadingToFinish,
+  userEvent,
+};
