@@ -75,3 +75,11 @@ export interface IRender {
   books?: IBooks;
   renderOptions?: object;
 }
+
+export interface IRequestHandler {
+  headers: {
+    get: (name: string) => {
+      replace: (authType: string, token: string) => string;
+    };
+  };
+}

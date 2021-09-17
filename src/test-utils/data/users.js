@@ -1,3 +1,5 @@
+// TODO: Convert to TypeScript
+
 const usersKey = "__bkworm_users__";
 let users = {};
 const persist = () =>

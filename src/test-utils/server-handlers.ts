@@ -1,5 +1,9 @@
 import { rest } from "msw";
-import * as usersDB from "../test-utils/data/users";
+import * as usersDB from "./data/users";
+import { IRequestHandler } from "interfaces";
+// TODO: figure out why can't use env file here - ts thinks its undefined
+// const listApi: string = process.env.NEXT_PUBLIC_ALL_BOOKS_API;
+const listApi: string = "https://www.googleapis.com/books/v1/volumes?q=";
 
 const book = [
   {
@@ -166,26 +170,27 @@ const book = [
 
 const handlers = [
   rest.get(
-    "https://www.googleapis.com/books/v1/volumes",
+    listApi,
     // "http://localhost:3000/",
     async (req, res, ctx) => {
-      const user = await getUser(req);
-      const token = getToken(req);
-      console.log("Boooooooo");
+      // const user = await getUser(req);
+      // const token = getToken(req);
+      // console.log("Boooooooo");
       // return res(ctx.json({ user: { ...user, token } }));
       return res(ctx.json({ books: book }));
     }
   ),
 ];
 
-const getToken = (req) =>
+const getToken = (req: IRequestHandler) =>
   req.headers.get("Authorization")?.replace("Bearer ", "");
 
-async function getUser(req) {
+// TODO: Fix error status's for TS to pass
+async function getUser(req: IRequestHandler) {
   const token = getToken(req);
   if (!token) {
     const error = new Error("A token must be provided");
-    error.status = 401;
+    // error.status = 401;
     throw error;
   }
   let userId;
@@ -193,7 +198,7 @@ async function getUser(req) {
     userId = atob(token);
   } catch (e) {
     const error = new Error("Invalid token. Please login again.");
-    error.status = 401;
+    // error.status = 401;
     throw error;
   }
   const user = await usersDB.read(userId);
