@@ -13,8 +13,6 @@ import BookList from "components/BookList";
 import { useBookList } from "../utils/books";
 import { fakeBooksData } from "tempData";
 
-// TODO: Convert to TypeScript
-
 jest.mock("next-auth/client");
 jest.mock("../utils/books");
 

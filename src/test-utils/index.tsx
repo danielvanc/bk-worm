@@ -25,10 +25,8 @@ async function render(
   ui: React.ReactElement,
   { route = "/", user, books, ...renderOptions }: IRender
 ) {
-  // console.log("user", user, books);
   // user = typeof user === "undefined" ? await loginAsUser() : user;
   window.history.pushState({}, "Test page", route);
-  // console.log(document.location.pathname);
   const returnValue = {
     ...rtlRender(ui, {
       wrapper: AppProviders,
@@ -46,7 +44,7 @@ async function render(
 const localStorageKey = "__bkworm_auth_provider_token__";
 
 async function loginAsUser(userProperties?: IUserProps) {
-  const user = buildUser(userProperties);
+  const user: IUserProps = buildUser(userProperties);
   await usersDB.create(user);
   const authUser = await usersDB.authenticate(user);
 
@@ -54,7 +52,7 @@ async function loginAsUser(userProperties?: IUserProps) {
   return authUser;
 }
 
-async function renderScaffold(user?: IAuthUser) {
+async function renderScaffold(user?: IUserProps) {
   if (user === undefined) {
     // First ensure user is shown the 'unauthenticated' screen
     rtlRender(<Page />);

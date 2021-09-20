@@ -19,19 +19,15 @@ export interface BookFields extends DefaultBookFields {
 }
 
 export interface IAuthUser {
-  user?:
-    | {
-        name?: string | null | undefined;
-        email?: string | null | undefined;
-        image?: string | null | undefined;
-      }
-    | undefined;
+  name?: string | null | undefined;
+  email?: string | null | undefined;
+  image?: string | null | undefined;
 }
 
 export interface UseAuthProps {
   session: {
     [x: string]: unknown;
-    user?: IAuthUser;
+    user?: IAuthUser | undefined;
     expires?: string | undefined;
     // TODO: Remove any types and add required types
     signOut?: any;
@@ -40,6 +36,7 @@ export interface UseAuthProps {
 }
 
 export interface IUserProps {
+  // [index: number]: number;
   id?: number;
   username?: string;
   password?: string;
@@ -82,4 +79,8 @@ export interface IRequestHandler {
       replace: (authType: string, token: string) => string;
     };
   };
+}
+
+export interface IError extends Error {
+  status?: number;
 }

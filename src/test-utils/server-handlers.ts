@@ -195,7 +195,7 @@ async function getUser(req: IRequestHandler) {
   }
   let userId;
   try {
-    userId = atob(token);
+    userId = Number(atob(token));
   } catch (e) {
     const error = new Error("Invalid token. Please login again.");
     // error.status = 401;
