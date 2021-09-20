@@ -3,7 +3,7 @@ import * as usersDB from "./test-utils/data/users";
 import { server } from "./test-utils/server";
 
 jest.mock("next/dynamic", () => (func) => {
-  let component = null;
+  let component;
   func().then((module) => {
     component = module.default;
   });
@@ -13,10 +13,9 @@ jest.mock("next/dynamic", () => (func) => {
   return DynamicComponent;
 });
 
-beforeAll(() =>
+beforeAll(async () =>
   server.listen({
     onUnhandledRequest: "error",
-    quiet: false,
   })
 );
 afterAll(() => server.close());

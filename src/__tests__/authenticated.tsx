@@ -35,10 +35,14 @@ test("authenticates and render`s logged in status", async () => {
 test("displays book(s) once logged in", async () => {
   await renderScaffold();
 
-  useBookList.mockImplementation(useGetBooks);
+  const mockedUseBookList = useBookList as jest.Mock;
+
+  mockedUseBookList.mockImplementation(useGetBooks);
 
   rtlRender(<BookList />);
-  let tempBookHeading = screen.getByRole("heading", { name: /Temp book/i });
+  let tempBookHeading: HTMLElement | null = screen.getByRole("heading", {
+    name: /Temp book/i,
+  });
   expect(tempBookHeading).toBeInTheDocument();
 
   // Fake response from api with fake data and update component's state

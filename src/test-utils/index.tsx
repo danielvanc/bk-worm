@@ -89,7 +89,7 @@ async function renderScaffold(user?: IAuthUser) {
   };
 }
 
-let setReturnValue;
+let setReturnValue: React.Dispatch<any>;
 
 function useGetBooks() {
   const loadingBooks = [
