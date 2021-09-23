@@ -3,7 +3,8 @@ import * as usersDB from "./data/users";
 import { IRequestHandler } from "interfaces";
 // TODO: figure out why can't use env file here - ts thinks its undefined
 // const listApi: string = process.env.NEXT_PUBLIC_ALL_BOOKS_API;
-const listApi: string = "https://www.googleapis.com/books/v1/volumes?q=";
+// const listApi: string = "https://www.googleapis.com/books/v1/volumes?q=";
+const listApi: string = "/books/v1/volumes";
 
 const book = [
   {
