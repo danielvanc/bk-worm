@@ -8,14 +8,14 @@ export default function Unauthenticated() {
   return (
     <div>
       <Image src="/img/logo.svg" alt="" width="131" height="38" />
-      <header>
-        <h1 className="opacity-5 lm:opacity-100 text-grayWorm-300 font-fred text-hMedium lm:text-hSmall desktop:text-hLarge uppercase">
+      <header className="uppercase text-grayWorm-300">
+        <h1 className="opacity-5 leading-tighter lm:leading-10 lm:opacity-100  font-fred text-hMedium lm:text-hSmall desktop:text-hLarge desktop:leading-none">
           Read more
         </h1>
-        <h2 className="font-fred text-grayWorm-300 text-sm lm:text-base desktop:text-h2Normal uppercase">
+        <h2 className="font-fred text-grayWorm-300 text-sm lm:text-base desktop:text-h2Normal desktop:leading-3">
           Find read and spread your love for books
         </h2>
-        <p>Let your mind escape</p>
+        <p className="text-sm lm:text-xl">Let your mind escape</p>
       </header>
 
       <main>

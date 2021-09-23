@@ -31,6 +31,9 @@ module.exports = {
         lm: "400px",
         desktop: "1200px",
       },
+      lineHeight: {
+        tighter: 0.8,
+      },
     },
     fontFamily: {
       fred: ['"Fredoka One"', "cursive"],
