@@ -6,7 +6,7 @@ import { useAuth } from "context/auth";
 export default function Unauthenticated() {
   const { session } = useAuth();
   return (
-    <div>
+    <div className="grid grid-cols-8 gap-3 lm:grid-cols-12 lm:gap-4">
       <Image src="/img/logo.svg" alt="" width="131" height="38" />
       <header className="uppercase text-grayWorm-300">
         <h1 className="opacity-5 leading-tighter lm:leading-10 lm:opacity-100  font-fred text-hMedium lm:text-hSmall desktop:text-hLarge desktop:leading-none">
