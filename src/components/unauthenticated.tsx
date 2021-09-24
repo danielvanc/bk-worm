@@ -6,12 +6,12 @@ import { useAuth } from "context/auth";
 export default function Unauthenticated() {
   const { session } = useAuth();
   return (
-    <div className="grid grid-cols-8 gap-3 lm:grid-cols-12 lm:gap-2 auto-rows-auto">
+    <div className="grid grid-cols-8 gap-3 lm:grid-cols-12 lm:gap-2 md:gap-4 auto-rows-auto">
       <div className="col-start-2 col-end-5 lm:col-start-2 lm:col-end-6 row-start-1 row-span-1">
         <Image src="/img/logo.svg" alt="" width="131" height="38" />
       </div>
 
-      <header className="grid grid-cols-8 gap-3 lm:grid-cols-12 lm:gap-2 uppercase text-grayWorm-300 col-span-full row-start-2 row-end-3">
+      <header className="grid grid-cols-8 gap-3 lm:grid-cols-12 lm:gap-2 md:gap-4 uppercase text-grayWorm-300 col-span-full row-start-2 row-end-3">
         <h1 className="col-start-1 col-end-6 row-start-1 row-span-full lm:col-span-full lm:text-center opacity-5 leading-tighter lm:leading-10 lm:opacity-100 font-fred text-hMedium lm:text-hSmall desktop:text-hLarge desktop:leading-none">
           Read more
         </h1>

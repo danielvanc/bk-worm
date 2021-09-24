@@ -1,3 +1,5 @@
+const defaultTheme = require("tailwindcss/defaultTheme");
+
 module.exports = {
   mode: "jit",
   purge: [
@@ -6,6 +8,11 @@ module.exports = {
   ],
   darkMode: false, // or 'media' or 'class'
   theme: {
+    screens: {
+      lm: "400px",
+      desktop: "1200px",
+      ...defaultTheme.screens,
+    },
     extend: {
       colors: {
         rosyWorm: {
@@ -26,10 +33,6 @@ module.exports = {
         hMedium: "6rem",
         hLarge: "8.4375rem",
         h2Normal: "2rem",
-      },
-      screens: {
-        lm: "400px",
-        desktop: "1200px",
       },
       lineHeight: {
         tighter: 0.8,
