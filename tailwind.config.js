@@ -37,6 +37,10 @@ module.exports = {
       lineHeight: {
         tighter: 0.8,
       },
+      gridTemplateColumns: {
+        "main-desktop": "5fr 3fr",
+        "header-desktop": "3fr 1fr 2fr 2fr 1fr",
+      },
     },
     fontFamily: {
       fred: ['"Fredoka One"', "cursive"],
