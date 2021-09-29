@@ -40,6 +40,8 @@ module.exports = {
       gridTemplateColumns: {
         "main-desktop": "5fr 3fr",
         "header-desktop": "3fr 1fr 2fr 2fr 1fr",
+        "main-xl-desktop": "4fr 4fr 4fr",
+        "header-xl-desktop": "6fr 6fr",
       },
     },
     fontFamily: {
