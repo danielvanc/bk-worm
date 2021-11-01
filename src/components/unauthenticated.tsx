@@ -12,7 +12,7 @@ export default function Unauthenticated() {
       </div>
 
       <header className="grid grid-cols-8 gap-3 lm:grid-cols-12 lm:gap-2 md:gap-4 xl:grid-cols-header-desktop 2xl:grid-cols-header-xl-desktop row-start-2 row-end-4 xl:col-start-1 xl:col-end-2 2xl:col-start-2 2xl:col-end-3  2xl:row-auto uppercase text-grayWorm-300 col-span-full">
-        <h1 className="col-start-1 col-end-6 row-start-1 row-span-full lm:col-span-full lm:text-center opacity-5 leading-tighter lm:leading-10 lm:opacity-100 xl:col-start-1 xl:col-end-7 2xl:col-end-2 2xl:row-auto font-fred text-hMedium lm:text-hSmall desktop:text-hLarge desktop:leading-none ">
+        <h1 className="col-start-1 col-end-6 row-start-1 row-span-full lm:col-span-full lm:text-center opacity-5 leading-tighter lm:leading-10 lm:opacity-100 xl:col-start-1 xl:col-end-7 2xl:col-end-2 2xl:row-auto font-fred text-hMedium lm:text-hSmall desktop:text-hLarge desktop:leading-none 2xl:-rotate-90">
           Read more
         </h1>
         <h2 className="font-fred text-grayWorm-300 text-sm lm:text-base desktop:text-h2Normal desktop:leading-3 col-start-2 col-end-6 row-start-1 row-end-2 self-center lm:row-start-2 lm:row-end-3 lm:col-span-full lm:self-start lm:text-center xl:col-start-1 2xl:col-end-2">
