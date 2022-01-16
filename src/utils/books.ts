@@ -15,7 +15,7 @@ export function useBookList(endpoint = '""'): BookList {
   // const listApi = process.env.NEXT_PUBLIC_ALL_BOOKS_API;
   const listApi = "https://www.googleapis.com/books/v1/volumes?q=";
   // Might need the users session details for finding faved books etc
-  const { session } = useAuth();
+  // const { session } = useAuth();
 
   const [books, setBooks] = React.useState<IBooks>();
   const { data, isIdle, isLoading, isError, isSuccess, run } = useAsync();
@@ -35,11 +35,12 @@ export function useBookList(endpoint = '""'): BookList {
   ];
 
   React.useEffect(() => {
-    if (session?.user) {
-      const startUp = fireFetch(`${listApi}${endpoint}`);
-      run(startUp);
-    }
-  }, [endpoint, listApi, run, session]);
+    // if (session?.user) {
+    //   const startUp = fireFetch(`${listApi}${endpoint}`);
+    //   run(startUp);
+    // }
+  }, []);
+  // }, [endpoint, listApi, run, session]);
 
   React.useEffect(() => {
     if (data?.items) {
