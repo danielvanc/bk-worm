@@ -7,7 +7,7 @@ import {
   waitForElementToBeRemoved,
 } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import client from "next-auth/client";
+// import client from "next-auth/client";
 import { buildUser } from "./generate";
 import * as usersDB from "./data/users";
 import Page from "components/Page";
@@ -73,8 +73,9 @@ async function renderScaffold(user?: IUserProps) {
     user,
   };
 
-  const mockedClient = client.useSession as jest.Mock;
-  mockedClient.mockReturnValueOnce([mockSession, false]);
+  // TODO: Fix mocked client
+  // const mockedClient = client.useSession as jest.Mock;
+  // mockedClient.mockReturnValueOnce([mockSession, false]);
 
   let utils: object = {};
   await act(async () => {
