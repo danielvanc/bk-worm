@@ -1,12 +1,12 @@
 import * as React from "react";
-import { signIn, signOut, useSession } from "next-auth/client";
+import { signIn, signOut, useSession } from "next-auth/react";
 import { UseAuthProps, inputProviderProps } from "interfaces";
 
 const AuthContext = React.createContext({} as UseAuthProps);
 AuthContext.displayName = "AuthContext";
 
 export default function AuthProvider(props: inputProviderProps) {
-  const [session, loading] = useSession();
+  const { data: session, status } = useSession();
 
   const value = {
     session: {
