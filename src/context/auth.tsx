@@ -1,19 +1,16 @@
 import * as React from "react";
-import { signIn, signOut, useSession } from "next-auth/react";
-import { UseAuthProps, inputProviderProps } from "interfaces";
 
-const AuthContext = React.createContext({} as UseAuthProps);
+const AuthContext = React.createContext({});
 AuthContext.displayName = "AuthContext";
 
-export default function AuthProvider(props: inputProviderProps) {
-  const { data: session, status } = useSession();
-
+// TODO: Add correct prop types
+export default function AuthProvider(props: any) {
   const value = {
-    session: {
-      ...session,
-      signIn,
-      signOut,
-    },
+    // session: {
+    //   ...session,
+    //   signIn,
+    //   signOut,
+    // },
   };
 
   // TODO: Add extra possible states
