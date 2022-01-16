@@ -9,9 +9,10 @@ export async function client(
     method: data ? "POST" : "GET",
     data: data ? JSON.stringify(data) : "",
     url,
-    headers: {
-      ...customHeaders,
-    },
+    // TODO: Fix this
+    // headers: {
+    //   ...customHeaders,
+    // },
     ...customConfig,
   };
 
