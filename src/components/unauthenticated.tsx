@@ -1,10 +1,9 @@
-import React from "react";
 import Image from "next/image";
-import { useAuth } from "context/auth";
+// import { useAuth } from "context/auth";
 // import styles from "styles/unauthenticated.module.css";
 
 export default function Unauthenticated() {
-  const { session } = useAuth();
+  // const { session } = useAuth();
   return (
     <div className="grid grid-cols-8 gap-3 lm:grid-cols-12 lm:gap-2 md:gap-4 xl:grid-cols-main-desktop 2xl:grid-cols-main-xl-desktop auto-rows-12">
       <div className="col-start-2 col-end-5 lm:col-start-2 lm:col-end-6 xl:col-start-2 xl:col-end-3 row-start-1 row-span-1 2xl:col-start-3 2xl:col-end-4 2xl:row-auto">
@@ -30,7 +29,7 @@ export default function Unauthenticated() {
           ullamcorper maecenas condimentum nunc sed.
         </p>
         <div>
-          <button onClick={() => session.signIn()}>Sign in</button>
+          {/* <button onClick={() => session.signIn()}>Sign in</button> */}
         </div>
         <h3>Why sign up?</h3>
         <p>

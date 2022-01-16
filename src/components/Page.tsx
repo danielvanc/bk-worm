@@ -1,8 +1,12 @@
-import React from "react";
+import { useState, useEffect } from "react";
+import Link from "next/link";
 import Head from "next/head";
 import dynamic from "next/dynamic";
+import { useRouter } from "next/router";
+import { supabase } from "utils/supabase";
 import { PageProps } from "types";
-import { useAuth } from "context/auth";
+import Unauthenticated from "./unauthenticated";
+// import { useAuth } from "context/auth";
 
 const Loading = () => <p>Loading...</p>;
 
@@ -19,7 +23,42 @@ export default function Page({
   desc = "The book app for book lovers",
   children,
 }: PageProps) {
-  const { session } = useAuth();
+  // const { session } = useAuth();
+
+  const Router = useRouter();
+  // TODO: Set correct types
+  const [user, setUser] = useState<any>();
+
+  async function handleLogout() {
+    await supabase.auth.signOut();
+    Router.push("/");
+  }
+
+  async function handleLogIn() {
+    await supabase.auth.signIn({
+      provider: "github",
+    });
+  }
+
+  useEffect(() => {
+    console.log({ user });
+  }, [user]);
+
+  useEffect(() => {
+    const session = supabase.auth.session();
+
+    setUser(session ?? null);
+    const { data: authListener } = supabase.auth.onAuthStateChange(
+      async (event, session) => {
+        setUser(session ?? null);
+      }
+    );
+
+    return () => {
+      authListener?.unsubscribe();
+    };
+  }, []);
+
   return (
     <div>
       <Head>
@@ -28,9 +67,12 @@ export default function Page({
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      {!session?.user && <UnAuthenticatedApp />}
+      {!user && <button onClick={handleLogIn}>Log in</button>}
+      {user && <button onClick={handleLogout}>Log out</button>}
 
-      {session?.user && <AuthenticatedApp>{children}</AuthenticatedApp>}
+      <Unauthenticated />
+      {/* {!session?.user && <UnAuthenticatedApp />} */}
+      {/* {session?.user && <AuthenticatedApp>{children}</AuthenticatedApp>} */}
     </div>
   );
 }
