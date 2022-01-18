@@ -4,5 +4,11 @@
     // to avoid clashing with Jest types
     "types": ["cypress"]
   },
-  "include": ["../node_modules/cypress", "./**/*.js"]
+  "include": [
+    "../node_modules/cypress",
+    "./**/*.ts",
+    "support/index.ts",
+    "plugins/index.ts",
+    "support/commands.ts"
+  ]
 }

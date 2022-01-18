@@ -2,12 +2,16 @@ import "@testing-library/jest-dom/extend-expect";
 import * as usersDB from "./test-utils/data/users";
 import { server } from "./test-utils/server";
 
-jest.mock("next/dynamic", () => (func) => {
-  let component;
-  func().then((module) => {
+// TODO: Set to correct type
+jest.mock("next/dynamic", () => (func: () => Promise<any>) => {
+  let component: unknown;
+  func().then((module: { default: unknown }) => {
     component = module.default;
   });
-  const DynamicComponent = (...args) => component(...args);
+
+  // TODO: Set to correct type
+  // @ts-ignore
+  const DynamicComponent = (...args: Array<unknown>) => component(...args);
   DynamicComponent.displayName = "LoadableComponent";
   DynamicComponent.preload = jest.fn();
   return DynamicComponent;
