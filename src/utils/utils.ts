@@ -1,5 +1,4 @@
 import axios, { AxiosRequestConfig } from "axios";
-import { ClientProps } from "interfaces";
 
 export async function client(
   url: string,

@@ -1,6 +1,4 @@
 import * as React from "react";
-import { initialStateType } from "interfaces";
-import { Action } from "types";
 
 type State = typeof defaultInitialState;
 

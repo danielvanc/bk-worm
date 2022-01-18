@@ -1,6 +1,6 @@
-import { IBooks } from "types";
+// TODO: Add a bit of organisation and seperate into different files
 
-export interface DefaultBookFields {
+interface DefaultBookFields {
   id: number;
   title: string;
   image: string;
@@ -14,17 +14,17 @@ export interface DefaultBookFields {
   isSuccess: boolean;
 }
 
-export interface BookFields extends DefaultBookFields {
+interface BookFields extends DefaultBookFields {
   description: string;
 }
 
-export interface IAuthUser {
+interface IAuthUser {
   name?: string | null | undefined;
   email?: string | null | undefined;
   image?: string | null | undefined;
 }
 
-export interface UseAuthProps {
+interface UseAuthProps {
   session: {
     [x: string]: unknown;
     user?: IAuthUser | undefined;
@@ -35,7 +35,7 @@ export interface UseAuthProps {
   };
 }
 
-export interface IUserProps {
+interface IUserProps {
   // [index: number]: number;
   id?: number;
   username?: string;
@@ -44,36 +44,36 @@ export interface IUserProps {
   overrides?: object;
 }
 
-export interface inputProviderProps {
+interface inputProviderProps {
   props?: React.ReactNode;
   children?: React.ReactNode;
 }
 
-export interface ClientProps {
+interface ClientProps {
   data?: [] | undefined;
   headers?: {
     customHeaders?: Object;
   };
 }
 
-export interface stateData {
+interface stateData {
   [data: number]: [];
   items?: [] | null;
 }
-export interface initialStateType {
+interface initialStateType {
   status: string;
   data: stateData | undefined;
   error: boolean;
 }
 
-export interface IRender {
+interface IRender {
   route?: string;
   user?: any;
   books?: IBooks;
   renderOptions?: object;
 }
 
-export interface IRequestHandler {
+interface IRequestHandler {
   headers: {
     get: (name: string) => {
       replace: (authType: string, token: string) => string;
@@ -81,6 +81,21 @@ export interface IRequestHandler {
   };
 }
 
-export interface IError extends Error {
+interface IError extends Error {
   status?: number;
 }
+
+// Reusables
+type BookList = {
+  books?: IBooks | BookPlaceholder;
+};
+
+type BookPlaceholder = DefaultBookFields[];
+
+type IBooks = BookFields[];
+
+type Action =
+  | { type: "idle"; payload?: boolean; data?: []; error?: boolean }
+  | { type: "pending"; payload?: boolean; data?: []; error?: boolean }
+  | { type: "resolved"; payload?: boolean; data?: []; error?: boolean }
+  | { type: "rejected"; payload?: boolean; data?: []; error?: boolean };

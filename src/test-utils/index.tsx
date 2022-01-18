@@ -13,8 +13,6 @@ import * as usersDB from "./data/users";
 import Page from "components/Page";
 import AppProviders from "context";
 
-import { IRender, IUserProps, IAuthUser } from "interfaces";
-
 const waitForLoadingToFinish = () =>
   waitForElementToBeRemoved(
     () => [...screen.queryAllByRole("heading", { name: /Temp book/i })],

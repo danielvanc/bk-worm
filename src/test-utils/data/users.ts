@@ -1,5 +1,3 @@
-import { IUserProps, IError } from "interfaces";
-
 let users: IUserProps[] = [];
 
 function validateUserForm({ username, password }: IUserProps) {

@@ -1,6 +1,9 @@
-import * as React from "react";
+import { ReactNode } from "react";
 import AuthProvider from "context/auth";
-import { AppProvidersProps } from "types";
+
+type AppProvidersProps = {
+  children?: ReactNode;
+};
 
 export default function AppProviders({ children }: AppProvidersProps) {
   return <AuthProvider>{children}</AuthProvider>;

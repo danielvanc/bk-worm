@@ -1,12 +1,17 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, ReactNode } from "react";
 import Link from "next/link";
 import Head from "next/head";
 import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
 import { supabase } from "utils/supabase";
-import { PageProps } from "types";
 import Unauthenticated from "./unauthenticated";
 // import { useAuth } from "context/auth";
+
+type PageProps = {
+  title?: string;
+  desc?: string;
+  children?: ReactNode;
+};
 
 const Loading = () => <p>Loading...</p>;
 

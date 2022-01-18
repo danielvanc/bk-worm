@@ -1,6 +1,8 @@
-import React from "react";
-// import { useAuth } from "context/auth";
-import { AuthenticatedProps } from "types";
+import { ReactNode } from "react";
+
+type AuthenticatedProps = {
+  children: ReactNode;
+};
 
 export default function Authenticated({ children }: AuthenticatedProps) {
   // const { session } = useAuth();

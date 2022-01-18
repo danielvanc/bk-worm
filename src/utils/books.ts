@@ -2,8 +2,6 @@ import * as React from "react";
 import { useAuth } from "context/auth";
 import { useAsync } from "utils/hooks";
 import { fireFetch } from "utils/utils";
-import { BookPlaceholder, IBooks } from "types";
-import { BookList } from "types";
 
 /* 
   Hook for displaying chosen book list. 
